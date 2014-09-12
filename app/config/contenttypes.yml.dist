@@ -52,8 +52,7 @@ entries:
     default_status: publish
     sort: datepublish DESC
     recordsperpage: 10
-    groups: [ basic, media ]
-
+    
 # Pages can be used for the more 'static' pages on your site. Things like
 # 'about us', 'contact' or a 'disclaimer'. This content-type has a 'templateselect'
 # field, which allows you to override the record_template setting for an
