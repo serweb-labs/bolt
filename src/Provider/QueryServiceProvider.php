@@ -24,15 +24,17 @@ class QueryServiceProvider implements ServiceProviderInterface
             return $runner;
         };
 
-        $app['query.parser'] = function ($app) {
-            $parser = new ContentQueryParser($app['storage']);
-            $parser->addService('select', $app['query.select']);
-            $parser->addService('search', $app['query.search']);
-            $parser->addService('search_weighter', $app['query.search_weighter']);
-            $parser->addService('search_config', $app['query.search_config']);
+        $app['query.parser'] = $app->share(
+            function ($app) {
+                $parser = new ContentQueryParser($app['storage']);
+                $parser->addService('select', $app['query.select']);
+                $parser->addService('search', $app['query.search']);
+                $parser->addService('search_weighter', $app['query.search_weighter']);
+                $parser->addService('search_config', $app['query.search_config']);
 
-            return $parser;
-        };
+                return $parser;
+            }
+        );
 
         $app['query.parser.handler'] = function ($app) {
             return new QueryParameterParser($app['storage']->createExpressionBuilder());
